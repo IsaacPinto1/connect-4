@@ -1,0 +1,30 @@
+- To create an array like we would in python by doing something like
+'board = [["" for i in range(6)] for i in range(7)], we do:
+const board = Array.apply("", Array(7)).map((i) => Array.apply("", Array(6)).map((i) => "hi"))
+
+- I can use this 2D array to write a nested .map() function that returns
+some <div>s rather than having to write each one out myself. The outer .map()
+returns the 7 columns and the inner .map() returns the 6 circles
+
+- When doing this, I can apply CSS selectors dynamically. NOTE: It is important
+to use different selectors for different elements, as when I import the Circle.js
+file, it will carry over the Circle.css file, as Circle.js imports Circle.css, so
+App.css and Circle.css must have different selectors
+
+- I can then pass down the position of each circle as a prop 'index'. To access
+the index in the .map() loop, I just add an additional parameter, i.e the syntax
+for .map is .map((element, index) =>{})
+
+
+HandleClick:
+    - Instead of slicing the old board, inserting new value, and putting the end on, you can just
+    make a copy of the board, change the value we want to change, then put the copy in changeBoardVals
+
+- To make sure you can only click circles with something below them, I track a piece of state
+'levels', which gives the current level for each column (note that it starts at 5 as .map() rendered
+them top down). HandleClick will only run if the current 'j' value is equal to the 'levels' value for that
+'i' value (column). For a successful HandleClick, I decrement levels for that column by 1
+
+- 'return' in forEach is the same as 'continue' in a normal for loop, as technically the forEach loop calls
+a function on each element
+
